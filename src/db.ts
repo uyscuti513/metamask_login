@@ -14,4 +14,13 @@ export const AppDataSource = new DataSource({
     entities: [User],
     migrations: [],
     subscribers: [],
-})
+});
+
+AppDataSource
+    .initialize()
+    .then(() => {
+        console.log("Data Source with typeorm has been initialized successfully.")
+    })
+    .catch((err) => {
+        console.error("Error during Data Source initialization:", err)
+    })
