@@ -1,5 +1,5 @@
 import { Router } from "express";
-import jwt from "express-jwt";
+import { expressjwt } from "express-jwt";
 import { config } from "../../config";
 import * as controller from "./controller";
 
@@ -9,12 +9,12 @@ export const usersRoutes = (router: Router) => {
 
   /* GET /api/users/:userId */
   /* Authenticated route */
-  router.get('/:userId',jwt(config), controller.get);
+  router.get('/:userId',expressjwt(config), controller.get);
 
   /* POST /api/users */
   router.post('/', controller.create);
 
   /* PATCH /api/users/:userId */
   /* Authenticated route */
-  router.patch('/:userId', jwt(config), controller.patch);
+  router.patch('/:userId', expressjwt(config), controller.patch);
 };
