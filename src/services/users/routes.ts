@@ -3,18 +3,17 @@ import { expressjwt } from "express-jwt";
 import { config } from "../../config";
 import * as controller from "./controller";
 
-export const usersRoutes = (router: Router) => {
-  /* GET /api/users */
-  router.get('/', controller.find);
+const usersRoutes = Router();
 
-  /* GET /api/users/:userId */
-  /* Authenticated route */
-  router.get('/:userId',expressjwt(config), controller.get);
+usersRoutes.get("/", controller.findAdress);
+usersRoutes.post('/', controller.create);
 
-  /* POST /api/users */
-  router.post('/', controller.create);
+/* GET /api/users/:userId */
+/* Authenticated route */
+usersRoutes.get("/:userId", expressjwt(config), controller.get);
 
-  /* PATCH /api/users/:userId */
-  /* Authenticated route */
-  router.patch('/:userId', expressjwt(config), controller.patch);
-};
+/* PATCH /api/users/:userId */
+/* Authenticated route */
+usersRoutes.patch("/:userId", expressjwt(config), controller.patch);
+
+export default usersRoutes;

@@ -3,16 +3,19 @@ import { User } from "../../entity/User";
 import { AppDataSource } from "../../db";
 import { Equal } from "typeorm";
 
-export const find = async (req: Request, res: Response, next: NextFunction) => {
+export const findAdress = async (req: Request, res: Response, next: NextFunction) => {
   try {
+
     const userRepository = await AppDataSource.getRepository(User);
-    const user = req.body;
+    const address = (req.query as any).address;
     const data = await userRepository.find({
-      where: { publicAddress: user.publicAddress },
+      where: { publicAddress: address },
     });
-    res.status(200).json({
-      data,
-    });
+    console.log(data),
+    console.log(address)
+    res.status(200).json(
+      data
+    );
   } catch (error) {
     console.log(`Could not find the publicAddress`);
     res.status(500).json({
