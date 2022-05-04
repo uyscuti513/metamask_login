@@ -5,16 +5,14 @@ import { Equal } from "typeorm";
 
 export const findAdress = async (req: Request, res: Response, next: NextFunction) => {
   try {
-
     const userRepository = await AppDataSource.getRepository(User);
     const address = (req.query as any).address;
+    const getAllData = await userRepository.find();
     const data = await userRepository.find({
       where: { publicAddress: address },
     });
-    console.log(data),
-    console.log(address)
     res.status(200).json(
-      data
+      getAllData
     );
   } catch (error) {
     console.log(`Could not find the publicAddress`);
@@ -52,10 +50,14 @@ export const create = async (req: Request, res: Response, next: NextFunction) =>
 		const createdUser = await userRepository.create(body);
 		return res
 			.status(200)
-			.json(createdUser);
+			.json({
+        success: true,
+        detail: `user created successfully`,
+        user: createdUser
+      });
 	} catch (error) {
 		console.log(`Could not create the user`);
-		res.status(500).json({
+		res.status(400).json({
 		  error,
 		});
 	}

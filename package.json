@@ -30,6 +30,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
+    "dev": "nodemon --exec npx ts-node src/index.ts",
     "test": "nodemon -w 'src/**/*.ts' -x ts-node --files -H -T index.ts",
     "typeorm": "typeorm-ts-node-commonjs"
   },
@@ -38,7 +39,7 @@
     "url": "git+https://github.com/nsalto/metamask_login.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Backend CodeCave",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/nsalto/metamask_login/issues"
