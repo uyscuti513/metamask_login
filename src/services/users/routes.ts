@@ -5,15 +5,13 @@ import * as controller from "./controller";
 
 const usersRoutes = Router();
 
-usersRoutes.get("/", controller.findAdress);
-usersRoutes.post('/', controller.create);
+usersRoutes.get("/", controller.findByAddress);
+usersRoutes.post('/', controller.createUser);
 
-/* GET /api/users/:userId */
-/* Authenticated route */
-usersRoutes.get("/:userId", expressjwt(config), controller.get);
+/* JWT Authenticated route */
+usersRoutes.get("/:userId", /* expressjwt(config), */ controller.get);
 
-/* PATCH /api/users/:userId */
-/* Authenticated route */
-usersRoutes.patch("/:userId", expressjwt(config), controller.patch);
+/* JWT Authenticated route */
+usersRoutes.patch("/:userId", /* expressjwt(config), */ controller.patch);
 
 export default usersRoutes;
