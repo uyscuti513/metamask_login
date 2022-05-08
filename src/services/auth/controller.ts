@@ -6,7 +6,6 @@ import { AppDataSource } from "../../db";
 
 import { config } from "../../config";
 import { User } from "../../entity/User";
-import { sign } from "crypto";
 
 export const create = async (req: Request, res: Response) => {
   const userRepository = await AppDataSource.getRepository(User);
@@ -59,7 +58,6 @@ export const create = async (req: Request, res: Response) => {
       'User is not defined in "Generate a new nonce for the user".'
     )
   }
-
   user.nonce = Math.floor(Math.random() * 10000).toString();
   userRepository.create(user);
 

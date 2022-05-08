@@ -1,8 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { User } from "../../entity/User";
 import { AppDataSource } from "../../db";
-import { Equal, SimpleConsoleLogger } from "typeorm";
-import { json } from "stream/consumers";
+import { AuthorizationError } from '../../errors/AuthorizationsError';
 
 export const findByAddress = async (
   req: Request,
