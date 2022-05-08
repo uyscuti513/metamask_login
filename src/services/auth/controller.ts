@@ -17,7 +17,8 @@ export const create = async (req: Request, res: Response) => {
       .send({ error: "Request should have signature and public_address" });
   }
   // Get the user with the given pulicaddress
-  const user = await userRepository.findOne({ where: { public_address } });
+  const user = await userRepository.findOneBy({ public_address });
+
   if (!user) {
     res.status(401).send({
       error: `User with public_address ${public_address} is not found in database`,

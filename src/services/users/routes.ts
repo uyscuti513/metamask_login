@@ -12,6 +12,6 @@ usersRoutes.post('/', controller.createUser);
 usersRoutes.get("/:userId", /* expressjwt(config), */ controller.get);
 
 /* JWT Authenticated route */
-usersRoutes.patch("/:userId", /* expressjwt(config), */ controller.patch);
+usersRoutes.patch("/:id", /* expressjwt(config), */ controller.patch);
 
 export default usersRoutes;
